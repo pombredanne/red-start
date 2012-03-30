@@ -7,6 +7,7 @@ RAKE=rake
 GIT=git
 
 BASEDIR=$(dirname $0)
+CACHE_PREFIX="c-"
 
 usage()
 {
@@ -28,7 +29,7 @@ sync_server()
         echo "SERVER NOT UPDATED $1: No remote found"
     else
         if [ -z $3 ]; then
-            $RSYNC -av --progress --delete "$BASEDIR/../collected-static/" $server_address:/srv/active/collected-static/
+            $RSYNC -rptv --progress --delete-after --filter "P $CACHE_PREFIX*" "$BASEDIR/../collected-static/" "$server_address:/srv/active/collected-static/"
         fi
         $GIT push $1 $2
         echo "$1 was successfully updated with branch $2"
@@ -78,6 +79,10 @@ done
 if [ -z "$@" ]; then
     usage 1
 fi
+
+# Force a checkout
+git checkout $branch
+git clean -f "$BASEDIR/../project/static/"
 
 if [ -z $skipstatic ]; then
     prep_static

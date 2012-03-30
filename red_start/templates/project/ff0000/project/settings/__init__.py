@@ -55,3 +55,13 @@ LOGGING = {
         },
     }
 }
+
+# URL That doesn't change.
+PERM_STATIC_URL = STATIC_URL
+VIEW_SETTINGS['PERM_STATIC_URL'] = PERM_STATIC_URL
+
+version_file = os.path.join(BASE_DIR, 'VERSION')
+if os.path.isfile(version_file):
+    data = open(version_file, 'r').read().strip()
+    if data:
+        STATIC_URL = STATIC_URL + 'c-%s/' % data
