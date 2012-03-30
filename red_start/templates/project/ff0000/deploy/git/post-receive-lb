@@ -1,0 +1,12 @@
+#!/bin/bash
+
+refname=unset
+while read oldrev newrev ref
+do
+    refname=$ref
+done
+branch=${refname#*/*/}
+echo "Checking out $branch"
+GIT_WORK_TREE=/srv/active git checkout -f $branch
+
+sudo svcadm restart nginx

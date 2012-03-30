@@ -1,0 +1,11 @@
+*.pyc
+django_start.egg-info
+build
+dist
+.DS_Store
+*.local.py
+.project
+.pydevproject
+.settings
+.coverage
+red_start.egg-info
