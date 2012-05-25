@@ -4,9 +4,11 @@
 from django.conf import settings as _settings
 
 def settings(request):
-     
+
+    values = {}
     try:
-        values = _settings.VIEW_SETTINGS
-    except AttributeError: # no SETTINGS in Django settings
-        values = {}
+        for v in _settings.VIEW_SETTINGS:
+            values[v] = getattr(_settings, v)
+    except AttributeError:  # no SETTINGS in Django settings
+        pass
     return {'settings': values}

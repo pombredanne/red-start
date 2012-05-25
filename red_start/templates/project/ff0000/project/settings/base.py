@@ -158,13 +158,9 @@ TEST_RUNNER = 'testing.TestRunner'
 # Which settings are passed by RequestContext to the templates
 # Keep this list small, as it is passed to each request.
 # Uncomment more settings as needed
-VIEW_SETTINGS = {
-    # 'ADMIN_MEDIA_PREFIX':    ADMIN_MEDIA_PREFIX,
-    # 'ADMINS'            :    ADMINS            ,
-    'LANGUAGE_CODE'     :    LANGUAGE_CODE     ,
-    # 'MANAGERS'          :    MANAGERS          ,
-    'TEMPLATE_DEBUG'    :    TEMPLATE_DEBUG    ,
-    # 'TIME_ZONE'         :    TIME_ZONE         ,
-}
+VIEW_SETTINGS = (
+    'LANGUAGE_CODE',
+    'TEMPLATE_DEBUG'
+)
 
 LOG_FILENAME = None
