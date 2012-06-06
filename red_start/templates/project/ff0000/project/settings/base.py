@@ -160,7 +160,8 @@ TEST_RUNNER = 'testing.TestRunner'
 # Uncomment more settings as needed
 VIEW_SETTINGS = (
     'LANGUAGE_CODE',
-    'TEMPLATE_DEBUG'
+    'TEMPLATE_DEBUG',
+    'PERM_STATIC_URL'
 )
 
 LOG_FILENAME = None

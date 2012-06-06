@@ -58,7 +58,6 @@ LOGGING = {
 
 # URL That doesn't change.
 PERM_STATIC_URL = STATIC_URL
-VIEW_SETTINGS['PERM_STATIC_URL'] = PERM_STATIC_URL
 
 version_file = os.path.join(BASE_DIR, 'VERSION')
 if os.path.isfile(version_file):
