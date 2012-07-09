@@ -1,4 +1,4 @@
-recursive-include red_start/templates *.*
+recursive-include red_start/templates *
 recursive-exclude red_start/templates *.pyc
 include MIT-LICENSE
 include README.md
