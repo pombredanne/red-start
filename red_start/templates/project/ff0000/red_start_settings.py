@@ -7,6 +7,7 @@
 import os
 from random import choice
 from string import ascii_lowercase, digits
+import stat
 
 def after_copy(no_prompt=False):
     """Steps to run after the templates has been copied in place."""
@@ -56,5 +57,8 @@ def after_copy(no_prompt=False):
                 data = data.replace(old_val, new_val)
             with open(filepath, 'w') as f:
                 f.write(data)
-
+            if os.path.basename(name).endswith('.sh'):
+                st = os.stat(filepath)
+                perms = stat.S_IMODE(st.st_mode) | stat.S_IWUSR | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH
+                os.chmod(filepath, perms)
     os.system("git commit -a -m'Replaced boilerplate variables'")
