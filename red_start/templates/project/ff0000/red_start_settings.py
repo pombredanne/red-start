@@ -19,6 +19,11 @@ def after_copy(no_prompt=False):
     os.system("git remote add --fetch --no-tags --track master boilerplate git://github.com/ff0000/red-boilerplate.git")
     os.system("git pull --squash boilerplate master")
     os.system("git commit -m 'Importing the RED Boilerplate http://github.com/ff0000/red-boilerplate'")
+
+    # Fix some ignore defaults
+    os.system("echo 'collected-static/*' >> .gitignore")
+    os.system("echo 'uploads/*' >> .gitignore")
+
     os.system("git rm --ignore-unmatch README.md")
     os.system("git rm --ignore-unmatch LICENSE.txt")
     os.system("git mv INSTRUCTIONS.md README.md")
