@@ -41,11 +41,11 @@ def base_template(request):
     requests.
     """
 
-    base_json = getattr(settings, 'BASE_JSON_TEMPLATE', 'base.js')
+    base_ajax = getattr(settings, 'BASE_AJAX_TEMPLATE', 'ajax_base.html')
     base_html = getattr(settings, 'BASE_HTML_TEMPLATE', 'base.html')
 
     if request.is_ajax():
-        template = base_json
+        template = base_ajax
     else:
         template = base_html
     return {
