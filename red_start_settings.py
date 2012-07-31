@@ -41,10 +41,12 @@ def main(no_prompt=False):
     # FIXME: This resets permissions!! Change with shutil
     # TODO: Also replace variables in file names
     for root, dirs, files in os.walk('.'):
-        DONT_REPLACE_IN = ['.svn', '.git', '.rbp-temp', '.sass-cache', 'node_modules']
-        for folder in DONT_REPLACE_IN:
-            if folder in dirs:
-                dirs.remove(folder)
+        DONT_REPLACE_IN = ['.svn', '.git', '.rbp-temp', '.sass-cache', 'node_modules', 'red_start_settings.py']
+        for path in DONT_REPLACE_IN:
+            if path in dirs:
+                dirs.remove(path)
+            if path in files:
+                files.remove(path)
         for name in files:
             filepath = os.path.join(root, name)
             with open(filepath, 'r') as f:
