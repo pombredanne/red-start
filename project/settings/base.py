@@ -7,7 +7,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../'))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, "apps"))
 
 # People who get code error notifications when DEBUG=False
-ADMINS = (('__PROJECT_NAME__ administrator', '__ADMIN_EMAIL__'),)
+ADMINS = (('__PROJECT_TITLE__ administrator', '__ADMIN_EMAIL__'),)
 
 DATABASES = {
     'default': {
@@ -23,7 +23,7 @@ DEBUG = True
 DEFAULT_FROM_EMAIL = '__ADMIN_EMAIL__'
 
 # Set the subject prefix for email messages sent to admins and managers
-EMAIL_SUBJECT_PREFIX = '[__PROJECT_NAME__] '
+EMAIL_SUBJECT_PREFIX = '[__PROJECT_TITLE__] '
 
 #DEFAULT_FROM_EMAIL = ''
 #EMAIL_HOST = ''
@@ -112,7 +112,7 @@ DEV_STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = (DEV_STATIC_ROOT,)
 
 # The Site Title of your Admin-Interface. Change this instead of changing index.html
-GRAPPELLI_ADMIN_TITLE = "__PROJECT_NAME__"
+GRAPPELLI_ADMIN_TITLE = "__PROJECT_TITLE__"
 ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
 
 TEMPLATE_CONTEXT_PROCESSORS = (
