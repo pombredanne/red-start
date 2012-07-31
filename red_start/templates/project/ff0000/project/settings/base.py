@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.staticfiles',
     'ff0000', # load django-admin commands, initial fixtures, ..
+    'js_routing',
 )
 
 # A tuple of IP addresses that see debug comments, when DEBUG is True
@@ -124,6 +125,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
     'ff0000.context_processors.settings',
+    'js_routing.context.js_config',
+    'js_routing.context.base_template',
 )
 
 # Display a detailed report for any TemplateSyntaxError.
