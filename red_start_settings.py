@@ -38,7 +38,7 @@ def after_copy(no_prompt=False):
     # FIXME: This resets permissions!! Change with shutil
     # TODO: Also replace variables in file names
     for root, dirs, files in os.walk('.'):
-        DONT_REPLACE_IN = ['.svn', '.git',]
+        DONT_REPLACE_IN = ['.svn', '.git', '.rbp-temp', '.sass-cache', 'node_modules']
         for folder in DONT_REPLACE_IN:
             if folder in dirs:
                 dirs.remove(folder)
