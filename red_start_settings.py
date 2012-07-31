@@ -21,7 +21,8 @@ def main(no_prompt=False):
 
     # 2. Replace boilerplate variables with prompt values or defaults
     placemarks = [
-      ['PROJECT_NAME', 'Project Name', 'Django Project'],
+      ['PROJECT_NAME', 'Project Name', 'djangoProject'],
+      ['PROJECT_TITLE', 'Project Title', 'Django Project'],
       ['ADMIN_EMAIL',  'Administrator email', 'geeks@ff0000.com'],
     ]
     replace = {}
