@@ -22,11 +22,12 @@ def build_js_route_map():
 
     data = render_to_string(JSON_TEMPLATE)
     data = json.loads(data.strip())
-    for obj in data:
-        key = ROUTE_ATTR
-        if URL_ATTR in obj:
-            key = URL_ATTR
-        mapping[obj[key]] = obj[CONFIG_ATTR]
+    for route_obj in [ x["routes"] for x in data if "routes" in x ]:
+        for obj in route_obj:
+            key = ROUTE_ATTR
+            if URL_ATTR in obj:
+                key = URL_ATTR
+            mapping[obj[key]] = obj[CONFIG_ATTR]
 
     return mapping
 
