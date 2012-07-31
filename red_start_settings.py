@@ -5,11 +5,13 @@
 
 # Also, this file will NOT be copied
 import os
+import sys
 from random import choice
 from string import ascii_lowercase, digits
 import stat
 
-def after_copy(no_prompt=False):
+
+def main(no_prompt=False):
     """Steps to run after the templates has been copied in place."""
     os.system("find . -name '*.pyc' -exec rm -rf {} \;")
 
@@ -54,3 +56,7 @@ def after_copy(no_prompt=False):
                 st = os.stat(filepath)
                 perms = stat.S_IMODE(st.st_mode) | stat.S_IWUSR | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH
                 os.chmod(filepath, perms)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
