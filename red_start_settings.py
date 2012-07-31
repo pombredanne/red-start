@@ -11,23 +11,11 @@ import stat
 
 def after_copy(no_prompt=False):
     """Steps to run after the templates has been copied in place."""
-    # 1. Import red-boilerplate in place using git
     os.system("find . -name '*.pyc' -exec rm -rf {} \;")
-    os.system("git init")
-    os.system("git add .")
-    os.system("git commit -m'Django project created with red-start'")
-    os.system("git remote add --fetch --no-tags --track master boilerplate git://github.com/ff0000/red-boilerplate.git")
-    os.system("git pull --squash boilerplate master")
-    os.system("git commit -m 'Importing the RED Boilerplate http://github.com/ff0000/red-boilerplate'")
 
     # Fix some ignore defaults
     os.system("echo 'collected-static/*' >> .gitignore")
     os.system("echo 'uploads/*' >> .gitignore")
-
-    os.system("git rm --ignore-unmatch README.md")
-    os.system("git rm --ignore-unmatch LICENSE.txt")
-    os.system("git mv INSTRUCTIONS.md README.md")
-    os.system("git commit -m'Restored red-start README.md'")
 
     # 2. Replace boilerplate variables with prompt values or defaults
     placemarks = [
@@ -66,4 +54,3 @@ def after_copy(no_prompt=False):
                 st = os.stat(filepath)
                 perms = stat.S_IMODE(st.st_mode) | stat.S_IWUSR | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH
                 os.chmod(filepath, perms)
-    os.system("git commit -a -m'Replaced boilerplate variables'")
