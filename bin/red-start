@@ -68,9 +68,10 @@ def main(args):
             assert False, "unhandled option"
 
     project_folder = None
-    if not len(args) > 0 and not no_prompt:
-        if not confirm("Install in current folder? [y/n]"):
-            sys.exit()
+    if not len(args) > 0:
+        if not no_prompt:
+            if not confirm("Install in current folder? [y/n]"):
+                sys.exit()
     else:
         project_folder = args[0]
 
