@@ -57,6 +57,8 @@ INSTALLED_APPS = (
 # A tuple of IP addresses that see debug comments, when DEBUG is True
 INTERNAL_IPS = ('0.0.0.0', '127.0.0.1',)
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_SSL_PROXY', 'true')
+
 # Number of items to show in a RSS Feed
 ITEMS_PER_FEED = 5
 
@@ -114,7 +116,6 @@ STATICFILES_DIRS = (DEV_STATIC_ROOT,)
 
 # The Site Title of your Admin-Interface. Change this instead of changing index.html
 GRAPPELLI_ADMIN_TITLE = "__PROJECT_NAME__"
-ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -154,6 +155,9 @@ USE_I18N = False
 
 # Display numbers and dates using the format of the current locale
 USE_L10N = False
+
+# If you set this to False, Django will not use timezone-aware datetimes.
+USE_TZ = True
 
 # Testing
 TEST_RUNNER = 'testing.TestRunner'
