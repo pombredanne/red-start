@@ -1,11 +1,18 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-try:
-    from setuptools import setup
-except ImportError:
-    from ez_setup import use_setuptools
-    use_setuptools()
-    from setuptools import setup
+from distutils.core import setup
+import glob
+import os
+
+base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'red_start'))
+
+data_files = []
+for dirpath, dirnames, filenames in os.walk(os.path.join(base_path, 'templates')):
+    # Ignore dirnames that start with '.'
+    for i, dirname in enumerate(dirnames):
+        if dirname.startswith('.'): del dirnames[i]
+    files = [os.path.join(dirpath, f)[len(base_path)+1:] \
+                            for f in filenames if not f.endswith('.pyc')]
+    data_files.extend(files)
 
 setup(
     name='red-start',
@@ -17,10 +24,7 @@ setup(
     packages=[
         'red_start',
     ],
-    # Note: Using MANIFEST.in instead of package_data, as it is respected
-    # both by bdist and sdist, see http://stackoverflow.com/questions/6714145/
-    include_package_data=True,
-    exclude_package_data = { '': ['*.pyc', '.DS_Store'] },
+    package_data={ 'red_start' : data_files },
     scripts=['bin/red-start'],
     classifiers=[
           'Development Status :: 3 - Alpha',

@@ -26,6 +26,19 @@ def usage(code = 2, message=None):
         print help
     sys.exit(code)
 
+def confirm(prompt, resp=False):
+    while True:
+        ans = raw_input(prompt)
+        if not ans:
+            return resp
+        if ans not in ['y', 'Y', 'n', 'N']:
+            print 'please enter y or n.'
+            continue
+        if ans == 'y' or ans == 'Y':
+            return True
+        if ans == 'n' or ans == 'N':
+            return False
+
 def main(args):
 
     pos_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -54,12 +67,12 @@ def main(args):
         else:
             assert False, "unhandled option"
 
-    if not len(args) > 0:
-        usage(message='Indicate the folder name for the project.')
-
-    project_folder = args[0]
-    if not project_folder:
-        usage(message='Indicate the folder name for the project.')
+    project_folder = None
+    if not len(args) > 0 and not no_prompt:
+        if not confirm("Install in current folder? [y/n]"):
+            sys.exit()
+    else:
+        project_folder = args[0]
 
     red_start.start_project(project_folder, template_dir, no_prompt)
     sys.path.remove(pos_dir)
