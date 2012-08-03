@@ -15,6 +15,11 @@ def js_config(request):
     """
 
     match_key = None
+
+    # Rebuild the map everytime in debug mode
+    if settings.DEBUG:
+        js_route_map = build_js_route_map()
+
     if request.path_info in js_route_map:
         match_key = request.path_info
     else:
