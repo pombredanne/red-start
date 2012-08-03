@@ -44,8 +44,8 @@ def build_js_file():
     writes it output to a static file.
     """
     data = get_routing_js()
-    filename = os.path.join(settings.DEV_STATIC_ROOT, 'js',
-                             STATIC_FILE)
-
-    with open(filename, 'w') as fp:
-        fp.write(data)
+    base = os.path.join(settings.DEV_STATIC_ROOT, 'js')
+    if os.path.exists(base):
+        filename = os.path.join(base, STATIC_FILE)
+        with open(filename, 'w') as fp:
+            fp.write(data)
