@@ -16,7 +16,7 @@ for dirpath, dirnames, filenames in os.walk(os.path.join(base_path, 'templates')
 
 setup(
     name='red-start',
-    version='0.1.1',
+    version='0.1.2',
     description='Create a Django project based on FF0000 best practices.',
     author='RED Interactive Agency',
     author_email='geeks@ff0000.com',
