@@ -7,7 +7,7 @@ import stat
 import fnmatch
 from random import choice
 
-def start_project(copy_to=None, copy_from=None, no_prompt=False):
+def start_project(copy_to=None, copy_from=None, no_prompt=False, no_git=False):
     if not copy_from:
         copy_from = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                     'templates', 'project', 'ff0000'))
@@ -38,5 +38,5 @@ def start_project(copy_to=None, copy_from=None, no_prompt=False):
         if callable(getattr(red_start_settings, 'after_copy', None)):
             # First change current directory to copy_to
             os.chdir(copy_to)
-            red_start_settings.after_copy(no_prompt=no_prompt)
+            red_start_settings.after_copy(no_prompt=no_prompt, no_git=no_git)
         sys.path.remove(copy_from)

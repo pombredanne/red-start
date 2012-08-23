@@ -85,8 +85,9 @@ def concatenate_files(start):
                 fp.write(d.read())
     shutil.rmtree(start)
 
-def after_copy(no_prompt=False):
-    init_git()
+def after_copy(no_prompt=False, no_git=False):
+    if not no_git:
+        init_git()
 
     # Replace variables with prompt values or defaults
     replace = get_replace_vars(no_prompt=no_prompt)

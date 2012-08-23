@@ -16,11 +16,14 @@ def usage(code = 2, message=None):
 
     --no-prompt -s
     All prompts will be skipped and default values used.
+
+    --no-git
+    Does not create a git repo for the new project.
     """
 
     if message:
         print >> sys.stderr, message
-    print "usage: red-start [--template-dir=templatedir] [--no-prompt or -s] project_name"
+    print "usage: red-start [--template-dir=templatedir] [--no-prompt or -s] [--no-git] project_name"
     print "usage: red-start [--help]"
     if code == 0:
         print help
@@ -46,10 +49,11 @@ def main(args):
     import red_start
 
     no_prompt=False
+    no_git = False
     template_dir = None
 
     try:
-        opts, args = getopt.getopt(args, "hs", [ "template-dir=", "help", "no-prompt" ])
+        opts, args = getopt.getopt(args, "hs", [ "template-dir=", "help", "no-prompt", "no-git"])
     except getopt.GetoptError, err:
         print str(err)
         usage()
@@ -64,6 +68,8 @@ def main(args):
             usage(0)
         elif o in ("-s", "--no-prompt"):
             no_prompt = True
+        elif o in ("--no-git",):
+            no_git = True
         else:
             assert False, "unhandled option"
 
@@ -75,7 +81,7 @@ def main(args):
     else:
         project_folder = args[0]
 
-    red_start.start_project(project_folder, template_dir, no_prompt)
+    red_start.start_project(project_folder, template_dir, no_prompt, no_git)
     sys.path.remove(pos_dir)
 
 if __name__ == "__main__":
